@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
+</head>
+<body>
+
+    {% for i in tests %}
+    <li><a class="name" href="/{{i.slug}}">{{i.name}}</a></li><br>
+    {% endfor %}
+
+    
+<script>
+const driver = window.driver.js.driver;
+
+// const driverObj = driver();
+
+// driverObj.highlight({
+//   element: "#some-element",
+//   popover: {
+//     title: "Title",
+//     description: "Description"
+//   }
+// });
+// const driverObj = driver();
+
+// driverObj.highlight({
+//   popover: {
+//     description: "<img src='https://i.imgur.com/EAQhHu5.gif' style='height: 202.5px; width: 270px;' /><span style='font-size: 15px; display: block; margin-top: 10px; text-align: center;'>Yet another highlight example.</span>",
+//   }
+// })
+
+
+const driverObj = driver({
+  showProgress: true,
+//   allowClose: false,
+  showButtons: [
+    'next',
+    'previous',
+    'close',
+  ],
+  overlayColor: 'red',
+  popoverClass: 'driverjs-theme',
+  steps: [
+    { element: '.name', popover: { title: 'Import the Library', description: 'It works the same in vanilla JavaScript as well as frameworks.', side: "left", align: 'start' }},
+    { element: '.name', popover: { title: 'Importing CSS', description: 'Import the CSS which gives you the default styling for popover and overlay.', side: "right", align: 'start' }},
+    { element: '.name', popover: { title: 'Create Driver', description: 'Simply call the driver function to create a driver.js instance', side: "bottom", align: 'start' }},
+  ]
+});
+
+driverObj.drive();
+</script>
+</body>
+</html>

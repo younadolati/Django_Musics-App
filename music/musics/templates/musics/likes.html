@@ -1,0 +1,103 @@
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .image{
+            max-width: 150px;
+            max-height: 170px;
+            float: right;
+            padding: 10px;
+        }
+        .box{
+            max-width: 400px;
+            display: table;
+        }
+        /* .text1{
+
+        } */
+        .nav{
+            background-color: rgba(18, 125, 218, 0.568);
+            height: 60px;
+            width: 100%;
+            display: table;
+
+        }
+        .ul1{
+            list-style: none;
+            padding-top:20px ;
+            /* clear: both; */
+            /* width: 50%; */
+
+        }
+        .ul1 > li{
+            display: inline;
+            margin-right:5px ;
+
+        }
+        .search{
+           float: left;
+           padding-bottom: 20px;
+           /* display: inline; */
+           
+           
+            
+            
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="display: inline;">
+            <ul class="ul1">
+                <li>HOME</li>
+                <li>Articles</li>
+                <li>Members</li>
+                <li>About Us</li>
+            </ul>
+            <div class="search">
+                <input type="text" >
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+
+    <div class="box">
+        <img src="https://images.freeimages.com/images/large-previews/bc4/curious-bird-1-1374322.jpg?fmt=webp&h=350" class="image" alt="">
+        <div class="text1">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد</div>
+    </div>
+
+    <br>
+    <br>
+    <label for="myInput">Type something in!</label>
+    <input id="myInput" type="text">
+    <script>
+        const myInput = document.getElementById("myInput");
+
+        function helloWorld() {
+            alert("Hello World!")
+        }
+        function debounce( callback, delay ) {
+            let timeout;
+            return function() {
+                clearTimeout( timeout );
+                timeout = setTimeout( callback, delay );
+            }
+        }
+
+        myInput.addEventListener(
+            "keyup",
+            debounce( helloWorld, 3000 )
+        );
+
+    </script>
+</body>
+</html>

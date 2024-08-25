@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <style>
+        #id_name{
+            width:100%;
+        }
+        #listbox{
+            width: 50%;
+            transition: 0.5s;
+            border-radius: 7px;
+            background-color:rgb(75, 75, 124);
+            margin-top: 20px;
+            box-shadow: 0 8px 8px 0 rgb(32, 10, 53);
+            margin-right: auto;
+        }
+        .not-visible{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<form action="{%  url 'autosearch' %}" method="post" id="search-form" autocomplete="off">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    
+</form>
+
+<div id="listbox" class="not-visible" ></div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    let search_form = document.getElementById("search-form");
+    let search_input = document.getElementById("id_name");
+    let list_box = document.getElementById("listbox");
+    // const csrf=document.getElementsByName('csrfmiddlewaretoken')[0].value
+    const sendSearchData = (name) => {
+        $.ajax({
+            method: "POST",
+            url: "{%  url 'autosearch' %}",
+            data: {
+                'name': name,
+                csrfmiddlewaretoken: "{{csrf_token}}",
+            },
+            success: function (response) {
+                let data=response.data;
+                if (Array.isArray(data)){
+                    list_box.innerHTML= ""
+                    data.forEach(name=>{
+                        list_box.innerHTML += `<div class="row mt-2 mb-2">
+                                                    <div class="col">${name.name}</div>
+                                                </div>`
+                    })
+                    console.log(data)
+
+                }else{
+                    if(search_input.value.length > 0){
+                        list_box.innerHTML=`<b>${data}</b>`
+                        // console.log(response.data)
+                    }else{
+                        list_box.classList.add('not-visible')
+                    }
+                }
+            }
+        })
+
+    }
+
+    search_input.addEventListener('keyup',function(e){
+        // console.log(e.target.value)
+        if (list_box.classList.contains('not-visible')){
+            list_box.classList.remove('not-visible');
+        }
+        sendSearchData(e.target.value)
+    });
+
+    
+
+
+    
+
+    
+    
+
+ 
+    
+
+
+
+
+    
+</script>
+</body>
+</html>

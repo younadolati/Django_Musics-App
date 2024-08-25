@@ -1,0 +1,24 @@
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/1.css">
+
+</head>
+<body>
+    <header>
+        <h1>
+            {% trans 'Members' %}
+        </h1>
+    </header>
+    <ul>
+        {% for i in mymembers%}
+        <li>
+            <a href="{{i.get_absolute_url}}" >{{i.firstname}} {{i.lastname}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

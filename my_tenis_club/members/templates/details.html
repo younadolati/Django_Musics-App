@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{mymember.firstname}} {{mymembers.lastname}}</h1>
+    <p>{{mymember.phone}}</p>
+    <p>{{mymember.joined_date}}</p>
+    <p>back home<a href="{{mymember.get_absolute_url}}">Members</a></p>
+    <br>
+    <br>
+    <form action="likes/{{ mymember.id }}" method="post">
+        {% csrf_token %}
+        <button value="{{mymember.id}}" name="likebtn">LIKE 💛</button>
+    </form>
+</body>
+</html>
